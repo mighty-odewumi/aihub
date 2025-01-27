@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+			screens: {
+				"nav": "850px"
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

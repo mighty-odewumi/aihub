@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { href: "/", label: "Home" },
+    // { href: "/", label: "Home" },
     { href: "/categories", label: "Categories" },
     { href: "/submit-tool", label: "Submit Tool" },
     { href: "/pricing", label: "Pricing" },
@@ -27,7 +27,7 @@ export default function Navbar() {
               <CircuitBoard className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold">AIHub</span>
             </Link>
-            <div className="hidden md:flex md:ml-10 space-x-8">
+            <div className="hidden nav:flex nav:ml-10 space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -40,13 +40,13 @@ export default function Navbar() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="hidden md:block w-72">
+            <div className={`hidden nav:block w-[8rem] ${isSignedIn && "w-6"}`}>
               <Search />
             </div>
             {isSignedIn ? (
               <UserButton />
             ) : (
-              <div className="hidden md:flex items-center space-x-2">
+              <div className="hidden nav:flex items-center space-x-2">
                 <Link href="/sign-in">
                   <Button variant="ghost" size="sm" className="text-gray-600">
                     Sign In
@@ -59,7 +59,7 @@ export default function Navbar() {
                 </Link>
               </div>
             )}
-            <div className="md:hidden">
+            <div className="nav:hidden">
               <Button
                 variant="ghost"
                 size="icon"
@@ -75,7 +75,7 @@ export default function Navbar() {
       </div>
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden">
+        <div className="nav:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
