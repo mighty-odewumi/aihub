@@ -9,15 +9,17 @@ import { SearchIcon } from "lucide-react"
 export default function Search() {
   const [query, setQuery] = useState("")
   const router = useRouter()
-  const { isSignedIn } = useUser()
+  const { isSignedIn, isLoaded } = useUser()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    if (isSignedIn) {
-      // TODO: Implement search
-      console.log("Searching for:", query)
-    } else {
-      router.push("/sign-in")
+    if (query.trim()) {
+      const searchUrl = `/search?q=${encodeURIComponent(query.trim())}`
+      if (isLoaded && isSignedIn) {
+        router.push(searchUrl)
+      } else {
+        router.push(`/sign-in?redirect=${encodeURIComponent(searchUrl)}`)
+      }
     }
   }
 
