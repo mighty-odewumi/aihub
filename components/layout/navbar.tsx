@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useUser } from "@clerk/nextjs"
+import { useUser, UserButton } from "@clerk/nextjs"
 import { Button } from "@/components/ui/button"
 import Search from "@/components/shared/search"
 import { CircuitBoard } from "lucide-react"
@@ -37,7 +37,7 @@ export default function Navbar() {
             <div className="hidden md:block w-72">
               <Search />
             </div>
-            {!isSignedIn && (
+            {!isSignedIn ? (
               <div className="flex items-center space-x-2">
                 <Link href="/sign-in">
                   <Button variant="ghost" size="sm" className="text-gray-600">
@@ -49,8 +49,11 @@ export default function Navbar() {
                     Sign Up
                   </Button>
                 </Link>
-              </div>
-            )}
+              </div>)
+              : (
+                <UserButton />
+              )
+            }
           </div>
         </div>
       </div>
